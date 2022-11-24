@@ -27,7 +27,6 @@
     "react-navigation-stack": "^2.10.4",
     "react-router-dom": "^6.4.0",
     "react-router-native": "^6.4.0",
-    "react-toastify": "^9.1.1",
     "toastify-react-native": "^3.1.0"
   },
   "devDependencies": {

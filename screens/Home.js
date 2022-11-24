@@ -1,22 +1,33 @@
 import React from "react";
-import { Text, View, Button, StyleSheet, ScrollView } from "react-native";
-import kambing from "../assets/kambing.jpg";
-
-import Navbar from "./navbar/Navbar";
+import { Text, View, TextInput, StyleSheet, Button, ActivityIndicator, ScrollView, RefreshControl } from "react-native";
 
 
-export default function Home({ navigation }) {
+export default function Home() {
+
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [refresh, setRefresh] = React.useState(false)
+
+  const pullRefresh = () => {
+    setRefresh(true)
+
+    setTimeout(() => {
+      setRefresh(false)
+    }, 1000)
+  }
+
   return (
     <React.Fragment>
       <View style={styles.container}>
-        <Navbar />
-
-        <View style={styles.someText}>
-          <ScrollView>
-            <Text>Some text</Text>
-            <Text>Proident velit ex fugiat sit reprehenderit non. Non nostrud consequat reprehenderit labore eu ea pariatur. Occaecat qui fugiat laboris ut nisi in aliquip proident adipisicing ad aliqua tempor tempor. Nulla cillum incididunt est fugiat. Proident in minim proident fugiat duis consequat nulla laboris reprehenderit tempor occaecat proident pariatur amet. Elit fugiat et cupidatat eiusmod reprehenderit exercitation proident velit aute.</Text>
-          </ScrollView>
-        </View>
+        <ScrollView refreshControl={
+          <RefreshControl refreshing={refresh} onRefresh={pullRefresh} />
+        }>
+          {isLoading &&
+            <ActivityIndicator size="large" color="red" />
+          }
+          <TextInput placeholder="Username" style={styles.textInput} />
+          <TextInput placeholder="Password" secureTextEntry={true} style={styles.textInput} />
+          <Button title="Click here" onPress={() => setIsLoading(!isLoading)} style={{ backgroundColor: 'red' }} />
+        </ScrollView>
       </View>
     </React.Fragment>
   )
@@ -24,14 +35,18 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#7F669D',
-    flex: 1
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginBottom: 200
   },
-  someText: {
-    backgroundColor: 'white',
-    marginTop: 50,
-    borderRadius: 20,
-    flex: 1,
-    padding: 20
+  textInput: {
+    borderWidth: 2,
+    borderColor: 'black',
+    width: 300,
+    borderRadius: 50,
+    padding: 15,
+    marginBottom: 10,
+    fontSize: 20
   }
 })
