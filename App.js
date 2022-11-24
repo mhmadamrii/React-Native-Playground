@@ -1,11 +1,13 @@
 import React from "react";
 import Navigation from "./navigation/Navigation";
-import ToastManager, { Toast } from 'toastify-react-native';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <>
-      <Navigation />
+      <SafeAreaProvider>
+        <Navigation />
+      </SafeAreaProvider>
     </>
   )
 }

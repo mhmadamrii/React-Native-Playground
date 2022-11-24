@@ -16,7 +16,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Homepage" component={Home} options={{ title: "Homepage" }} />
+        <Stack.Screen name="Homepage" component={Home} options={{ title: "Homepage", headerShown: false }} />
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Product" component={Product} />
         <Stack.Screen name="net" component={TheNet} options={{ title: "The net ninja" }} />
