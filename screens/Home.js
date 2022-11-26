@@ -2,9 +2,8 @@ import React from "react";
 import { Text, View, TextInput, StyleSheet, Button, ActivityIndicator, ScrollView, RefreshControl } from "react-native";
 
 
-export default function Home() {
+export default function Home({ navigation }) {
 
-  const [isLoading, setIsLoading] = React.useState(false)
   const [refresh, setRefresh] = React.useState(false)
 
   const pullRefresh = () => {
@@ -21,12 +20,7 @@ export default function Home() {
         <ScrollView refreshControl={
           <RefreshControl refreshing={refresh} onRefresh={pullRefresh} />
         }>
-          {isLoading &&
-            <ActivityIndicator size="large" color="red" />
-          }
-          <TextInput placeholder="Username" style={styles.textInput} />
-          <TextInput placeholder="Password" secureTextEntry={true} style={styles.textInput} />
-          <Button title="Click here" onPress={() => setIsLoading(!isLoading)} style={{ backgroundColor: 'red' }} />
+          <Button title="go to net ninja tutorial" onPress={() => navigation.navigate("net")} />
         </ScrollView>
       </View>
     </React.Fragment>
