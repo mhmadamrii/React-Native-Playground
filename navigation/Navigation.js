@@ -2,30 +2,60 @@
 
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-// Routes
-import Home from "../screens/Home";
-import About from "../screens/About";
-import Product from "../screens/Product";
-import TheNet from "../screens/TheNet";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+import { Icon } from "react-native-elements";
 
 // random app
-import Auth from "../screens/randomApp/Auth";
+import Homepage from "../screens/randomApp/Homepage";
+import Setting from "../screens/randomApp/Setting";
+import Payments from "../screens/randomApp/Payments";
 
-const Stack = createNativeStackNavigator();
+// Routing using tab navigator
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Homepage" component={Auth} options={{ title: "Homepage", headerShown: false }} />
-        <Stack.Screen name="About" component={About} />
-        <Stack.Screen name="Product" component={Product} />
-        <Stack.Screen name="net" component={TheNet} options={{ title: "The net ninja" }} />
-      </Stack.Navigator>
+      <Tab.Navigator
+        activeColor="#e91e63"
+        barStyle={{ backgroundColor: "red" }}
+      >
+        <Tab.Screen
+          name="Homepage"
+          component={Homepage}
+          options={{
+            headerShown: false,
+            headerTitleAlign: "center",
+            tabBarIcon: () => <Icon name="home" color="#0D4C92" size={40} />,
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Setting}
+          options={{
+            headerShown: true,
+            headerTitleAlign: "center",
+            tabBarIcon: () => <Icon name="settings" size={40} />,
+          }}
+        />
+        <Tab.Screen
+          name="Payments"
+          component={Payments}
+          options={{
+            tabBarIcon: () => <Icon name="payments" size={40} />,
+            tabBarBadge: 5
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Setting}
+          options={{
+            headerShown: true,
+            headerTitleAlign: "center",
+            tabBarIcon: () => <Icon name="person" size={40} />,
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
