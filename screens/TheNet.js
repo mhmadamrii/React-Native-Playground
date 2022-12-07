@@ -1,30 +1,29 @@
-import React from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 
 export default function TheNet() {
+
+  const [people, setPeople] = useState([
+    {
+      id: 1, name: "John"
+    },
+    {
+      id: 2, name: "Doe"
+    },
+    {
+      id: 3, name: "Luigi"
+    }
+  ])
+
   return (
     <>
       <View style={styles.container}>
-        <ScrollView>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.texts}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-          <Text style={styles.newest}>Hello world</Text>
-        </ScrollView>
+        <FlatList 
+          data={people}
+          renderItem={({ item }) => (
+            <Text style={styles.texts}>{item.name}</Text>
+          )}
+        />
       </View>
     </>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   container: {
